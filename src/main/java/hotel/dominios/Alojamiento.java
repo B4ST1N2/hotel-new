@@ -1,18 +1,20 @@
 package hotel.dominios;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public abstract class Alojamiento {
     private String tipo;
     private String nombre;
     private int calificacion;
-    private double precioNoche;
+    private List<Habitacion> habitaciones;
 
-    public Alojamiento(String tipo, String nombre, int calificacion, double precioNoche) {
+
+    public Alojamiento(String tipo, List<Habitacion> habitaciones, int calificacion, String nombre) {
         this.tipo = tipo;
-        this.nombre = nombre;
+        this.habitaciones = habitaciones;
         this.calificacion = calificacion;
-        this.precioNoche = precioNoche;
+        this.nombre = nombre;
     }
 
     public double tarifaPorTemporada(LocalDate diaInicio, LocalDate diaFin) {
@@ -48,19 +50,19 @@ public abstract class Alojamiento {
         this.nombre = nombre;
     }
 
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(List<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
     public int getCalificacion() {
         return calificacion;
     }
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
-    }
-
-    public double getPrecioNoche() {
-        return precioNoche;
-    }
-
-    public void setPrecioNoche(double precioNoche) {
-        this.precioNoche = precioNoche;
     }
 }
