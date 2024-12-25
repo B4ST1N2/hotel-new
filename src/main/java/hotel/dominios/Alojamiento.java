@@ -7,14 +7,16 @@ public abstract class Alojamiento {
     private String tipo;
     private String nombre;
     private int calificacion;
+    private String ciudad;
     private List<Habitacion> habitaciones;
 
 
-    public Alojamiento(String tipo, List<Habitacion> habitaciones, int calificacion, String nombre) {
+    public Alojamiento(String tipo,String nombre,int calificacion,String ciudad, List<Habitacion> habitaciones) {
         this.tipo = tipo;
-        this.habitaciones = habitaciones;
-        this.calificacion = calificacion;
         this.nombre = nombre;
+        this.calificacion = calificacion;
+        this.ciudad = ciudad;
+        this.habitaciones = habitaciones;
     }
 
     public double tarifaPorTemporada(LocalDate diaInicio, LocalDate diaFin) {
@@ -34,20 +36,30 @@ public abstract class Alojamiento {
         return porcentaje;
     };
 
-    public String getTipo() {
-        return tipo;
+    @Override
+    public String toString() {
+        return
+                "tipo='" + tipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", calificacion=" + calificacion + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", habitaciones=" + habitaciones ;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public int getCalificacion() {
+        return calificacion;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public List<Habitacion> getHabitaciones() {
@@ -58,11 +70,19 @@ public abstract class Alojamiento {
         this.habitaciones = habitaciones;
     }
 
-    public int getCalificacion() {
-        return calificacion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

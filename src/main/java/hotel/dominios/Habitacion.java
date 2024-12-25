@@ -13,6 +13,8 @@ public class Habitacion {
         this.disponible = disponible;
     }
 
+
+
     public String getTipo() {
         return tipo;
     }

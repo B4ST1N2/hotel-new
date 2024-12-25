@@ -6,9 +6,14 @@ public class Apartamento extends Alojamiento{
 
     private double precioNoche;
 
-    public Apartamento(String tipo, List<Habitacion> habitaciones, int calificacion, String nombre, double precioNoche) {
-        super(tipo, habitaciones, calificacion, nombre);
+    public Apartamento(String tipo,String nombre, int calificacion, String ciudad,List<Habitacion> habitaciones, double precioNoche) {
+        super(tipo,nombre,calificacion, ciudad, habitaciones );
         this.precioNoche = precioNoche;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", precioNoche=" + precioNoche ;
     }
 
     public double getPrecioNoche() {

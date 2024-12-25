@@ -8,11 +8,20 @@ public class DiaDeSol extends Alojamiento{
     private boolean refrigerio;
     private double precio;
 
-    public DiaDeSol(String tipo, List<Habitacion> habitaciones, int calificacion, String nombre, String actividades, boolean refrigerio, double precio) {
-        super(tipo, habitaciones, calificacion, nombre);
+    public DiaDeSol(String tipo,  String nombre, int calificacion,String ciudad, List<Habitacion> habitaciones,String actividades, boolean refrigerio, double precio) {
+        super(tipo, nombre, calificacion, ciudad, habitaciones);
         this.actividades = actividades;
         this.refrigerio = refrigerio;
         this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", actividades='" + actividades + '\'' +
+                ", refrigerio=" + refrigerio +
+                ", precio=" + precio ;
+
     }
 
     public String getActividades() {
