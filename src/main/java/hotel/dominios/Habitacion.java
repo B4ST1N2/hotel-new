@@ -1,19 +1,38 @@
 package hotel.dominios;
 
 public class Habitacion {
+    private String nombreDelAlojamiento;
     private String tipo;
     private String contenido;
     private double precio;
     private boolean disponible;
 
-    public Habitacion(String tipo, String contenido, double precio, boolean disponible) {
+    public Habitacion(String nombreDelAlojamiento ,String tipo, String contenido, double precio, boolean disponible) {
+        this.nombreDelAlojamiento = nombreDelAlojamiento;
         this.tipo = tipo;
         this.contenido = contenido;
         this.precio = precio;
         this.disponible = disponible;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "contenido='" + contenido + '\'' +
+                ", nombreDelAlojamiento='" + nombreDelAlojamiento + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", precio=" + precio +
+                ", disponible=" + disponible +
+                '}';
+    }
 
+    public String getNombreDelAlojamiento() {
+        return nombreDelAlojamiento;
+    }
+
+    public void setNombreDelAlojamiento(String nombreDelAlojamiento) {
+        this.nombreDelAlojamiento = nombreDelAlojamiento;
+    }
 
     public String getTipo() {
         return tipo;

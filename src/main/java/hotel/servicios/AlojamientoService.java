@@ -10,58 +10,81 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlojamientoService implements IAlojamientoService {
-    private final String NOMBRE_ARCHIVO = "src/main/java/hotel/data/alojamientos.txt";
+public class AlojamientoService implements IGestionService<Alojamiento> {
+    private final String NOMBRE_ARCHIVO_ALOJAMIENTOS = "src/main/java/hotel/data/alojamientos.txt";
     private List<Alojamiento> alojamientos = new ArrayList<>();
+    private HabitacionService habitacionService;
 
     public AlojamientoService() {
-        var archivo = new File(NOMBRE_ARCHIVO);
-        boolean existe = false;
-        try{
-            existe = archivo.exists();
-            if(!existe){
-                var salida = new PrintWriter(new FileWriter(archivo, existe));
-                salida.close();
-                System.out.println("Se ha creado el archivo");
-            } else {
-                this.alojamientos = obtenerAlojamientos();
-            }
-        } catch (Exception e){
-            System.out.println("Error al crear el Archivo: "+e.getMessage());
-        }
+        this.habitacionService = new HabitacionService();
+        cargarDatos();
     }
 
-    @Override
-    public List<Alojamiento> obtenerAlojamientos() {
-        var listaAlojamiento = new ArrayList<Alojamiento>();
+
+    public void cargarDatos() {
         try {
-            List<String> lineas = Files.readAllLines(Paths.get(this.NOMBRE_ARCHIVO));
-            for (String linea : lineas) {
+            crearArchivo();
+            List<String> lineasAlojamiento = Files.readAllLines(Paths.get(NOMBRE_ARCHIVO_ALOJAMIENTOS));
+            List<Habitacion> habitaciones = habitacionService.obtenerDatos();
+
+            for (String linea : lineasAlojamiento) {
                 String[] datos = linea.split(",");
                 String tipo = datos[0];
+                String nombre = datos[1];
+                int calificacion = Integer.parseInt(datos[2]);
+                String ciudad = datos[3];
+
+                Alojamiento alojamiento = null;
+
                 switch (tipo) {
                     case "Hotel":
-                        listaAlojamiento.add(new Hotel(tipo, datos[1],Integer.parseInt(datos[2]),datos[3],null,Double.parseDouble(datos[4])));
+                        alojamiento = new Hotel(tipo, nombre, calificacion, ciudad, new ArrayList<>(), Double.parseDouble(datos[4]));
                         break;
                     case "Finca":
-                        listaAlojamiento.add(new Finca(tipo, datos[1],Integer.parseInt(datos[2]),datos[3],null,Double.parseDouble(datos[4])));
+                        alojamiento = new Finca(tipo, nombre, calificacion, ciudad, new ArrayList<>(), Double.parseDouble(datos[4]));
                         break;
                     case "Apartamento":
-                        listaAlojamiento.add(new Apartamento(tipo, datos[1],Integer.parseInt(datos[2]),datos[3],null,Double.parseDouble(datos[4])));
+                        alojamiento = new Apartamento(tipo, nombre, calificacion, ciudad, new ArrayList<>(), Double.parseDouble(datos[4]));
                         break;
                     case "DiaDeSol":
-                        listaAlojamiento.add(new DiaDeSol(tipo, datos[1],Integer.parseInt(datos[2]),datos[3],null,datos[4],Boolean.parseBoolean(datos[5]),Double.parseDouble(datos[6])));
+                        alojamiento = new DiaDeSol(tipo, nombre, calificacion, ciudad, new ArrayList<>(), datos[4], Boolean.parseBoolean(datos[5]), Double.parseDouble(datos[6]));
                         break;
                     default:
                         System.out.println("Tipo desconocido: " + tipo);
                 }
+
+                if (alojamiento != null) {
+                    // Asignar habitaciones al alojamiento
+                    for (Habitacion habitacion : habitaciones) {
+                        if (habitacion.getNombreDelAlojamiento().equals(nombre)) {
+                            alojamiento.getHabitaciones().add(habitacion);
+                        }
+                    }
+                    alojamientos.add(alojamiento);
+                }
             }
+
         } catch (Exception e) {
-            System.out.println("Error al obtener los alojamientos: " + e.getMessage());
+            System.out.println("Error al cargar datos: " + e.getMessage());
         }
-        return listaAlojamiento;
     }
 
+    @Override
+    public void crearArchivo() {
+        var archivo = new File(NOMBRE_ARCHIVO_ALOJAMIENTOS);
+        try {
+            if (!archivo.exists()) {
+                var salida = new PrintWriter(new FileWriter(archivo, false));
+                salida.close();
+                System.out.println("Archivo de alojamientos creado: " + NOMBRE_ARCHIVO_ALOJAMIENTOS);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al crear el archivo de alojamientos: " + e.getMessage());
+        }
+    }
 
-
+    @Override
+    public List<Alojamiento> obtenerDatos() {
+        return alojamientos;
+    }
 }
