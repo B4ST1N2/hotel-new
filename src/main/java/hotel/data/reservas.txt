@@ -1,2 +1,0 @@
-Hotel Lux,Suite,2020-02-02,2020-02-04,2,1,Sebastian,Vanegas,sebas@gmail.com,Colombiano,3128776356,12:06
-Hotel Lux,Suite,2025-01-01,2025-01-04,2,1,Sebastian,Vanegas ,sebasian@gmail.com,Colombiano,3128776356,12:21

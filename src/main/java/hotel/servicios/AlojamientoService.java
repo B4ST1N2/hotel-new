@@ -51,7 +51,7 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
 
             for (String linea : lineasAlojamiento) {
                 String[] datos = linea.split(",");
-                if (datos.length < 5) continue; // Verificar que la línea tenga todos los campos
+                if (datos.length < 5) continue;
 
                 String tipo = datos[0];
                 String nombre = datos[1];
@@ -72,7 +72,6 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
                         alojamiento = new Apartamento(tipo, nombre, calificacion, ciudad, new ArrayList<>(), precioNoche);
                         break;
                     case "DiaDeSol":
-                        // Para DiaDeSol, los datos adicionales deben estar en los siguientes campos
                         if (datos.length < 7) {
                             System.out.println("Datos insuficientes para DiaDeSol: " + nombre);
                             continue;
@@ -103,7 +102,7 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
         }
     }
 
-    // Método para buscar alojamientos según los parámetros
+
     public List<String> buscarAlojamientos(String ciudad, String tipoAlojamiento, LocalDate diaInicio, LocalDate diaFin,
                                            int cantidadAdultos, int cantidadNinos, int cantidadHabitaciones) {
         List<String> resultados = new ArrayList<>();
@@ -137,7 +136,7 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
         return resultados;
     }
 
-    // Método para confirmar disponibilidad de habitaciones
+
     public List<Habitacion> confirmarDisponibilidad(String nombreAlojamiento, LocalDate diaInicio, LocalDate diaFin,
                                                     int cantidadAdultos, int cantidadNinos, int cantidadHabitaciones) {
         List<Habitacion> disponibles = new ArrayList<>();
@@ -154,7 +153,6 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
         return disponibles;
     }
 
-    // Método para buscar alojamiento por nombre
     public Alojamiento buscarPorNombre(String nombre) {
         for (Alojamiento alojamiento : alojamientos) {
             if (alojamiento.getNombre().equalsIgnoreCase(nombre)) {
@@ -164,7 +162,7 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
         return null;
     }
 
-    // Método para confirmar una reserva
+
     public void confirmarReserva(Alojamiento alojamiento, Habitacion habitacion, LocalDate diaInicio, LocalDate diaFin,
                                  int cantidadAdultos, int cantidadNinos, String nombre, String apellido,
                                  String email, String nacionalidad, String telefono, String horaLlegada) {

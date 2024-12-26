@@ -10,7 +10,7 @@ public class CalculadorPrecios {
         int fin = diaFin.getDayOfMonth();
         int ultimoDiaMes = diaInicio.lengthOfMonth();
 
-        // Verificar si la estadía abarca los últimos 5 días del mes
+
         if (inicio >= (ultimoDiaMes - 4) || fin >= (ultimoDiaMes - 4)) {
             porcentaje += 15.0;
         }

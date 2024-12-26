@@ -20,12 +20,11 @@ public abstract class Alojamiento {
         this.habitaciones = habitaciones;
     }
 
-    // Método para calcular el porcentaje basado en la temporada
+
     public double tarifaPorTemporada(LocalDate diaInicio, LocalDate diaFin) {
         return CalculadorPrecios.calcularPorcentaje(diaInicio, diaFin);
     }
 
-    // Método para calcular el precio total
     public double calcularPrecioTotal(LocalDate diaInicio, LocalDate diaFin, int cantidadHabitaciones) {
         int dias = calcularDias(diaInicio, diaFin);
         double precioBase = getPrecioPorNoche() * cantidadHabitaciones * dias;
