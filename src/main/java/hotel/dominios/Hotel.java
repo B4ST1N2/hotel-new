@@ -2,7 +2,7 @@ package hotel.dominios;
 
 import java.util.List;
 
-public class Hotel extends Alojamiento{
+public class Hotel extends Alojamiento {
 
     private double precioNoche;
 
@@ -13,7 +13,12 @@ public class Hotel extends Alojamiento{
 
     @Override
     public String toString() {
-        return super.toString() + ", precioNoche=" + precioNoche ;
+        return super.toString() + ", Precio por noche: " + precioNoche;
+    }
+
+    @Override
+    public double getPrecioPorNoche() {
+        return this.precioNoche;
     }
 
     public double getPrecioNoche() {

@@ -2,13 +2,13 @@ package hotel.dominios;
 
 import java.util.List;
 
-public class DiaDeSol extends Alojamiento{
+public class DiaDeSol extends Alojamiento {
 
     private String actividades;
     private boolean refrigerio;
     private double precio;
 
-    public DiaDeSol(String tipo,  String nombre, int calificacion,String ciudad, List<Habitacion> habitaciones,String actividades, boolean refrigerio, double precio) {
+    public DiaDeSol(String tipo, String nombre, int calificacion, String ciudad, List<Habitacion> habitaciones, String actividades, boolean refrigerio, double precio) {
         super(tipo, nombre, calificacion, ciudad, habitaciones);
         this.actividades = actividades;
         this.refrigerio = refrigerio;
@@ -18,10 +18,14 @@ public class DiaDeSol extends Alojamiento{
     @Override
     public String toString() {
         return super.toString() +
-                ", actividades='" + actividades + '\'' +
-                ", refrigerio=" + refrigerio +
-                ", precio=" + precio ;
+                ", Actividades: '" + actividades + '\'' +
+                ", Incluye refrigerio: " + (refrigerio ? "Sí" : "No") +
+                ", Precio por actividad: " + precio;
+    }
 
+    @Override
+    public double getPrecioPorNoche() {
+        return this.precio;
     }
 
     public String getActividades() {

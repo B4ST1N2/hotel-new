@@ -1,4 +1,5 @@
 Hotel,Hotel Lux,5,Medellin,200.0
+Hotel,Hotel Carmen,3,Medellin,150.0
 Finca,Finca Verde,4,Bogota,150.0
 Apartamento,Apto Central,3,Cali,100.0
 DiaDeSol,Club Sol,4,Medellin,Canopic-Picnic-Escondidas,true,57
