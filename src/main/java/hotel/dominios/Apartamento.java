@@ -2,18 +2,23 @@ package hotel.dominios;
 
 import java.util.List;
 
-public class Apartamento extends Alojamiento{
+public class Apartamento extends Alojamiento {
 
     private double precioNoche;
 
-    public Apartamento(String tipo,String nombre, int calificacion, String ciudad,List<Habitacion> habitaciones, double precioNoche) {
-        super(tipo,nombre,calificacion, ciudad, habitaciones );
+    public Apartamento(String tipo, String nombre, int calificacion, String ciudad, List<Habitacion> habitaciones, double precioNoche) {
+        super(tipo, nombre, calificacion, ciudad, habitaciones);
         this.precioNoche = precioNoche;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", precioNoche=" + precioNoche ;
+        return super.toString() + ", Precio por noche: " + precioNoche;
+    }
+
+    @Override
+    public double getPrecioPorNoche() {
+        return this.precioNoche;
     }
 
     public double getPrecioNoche() {

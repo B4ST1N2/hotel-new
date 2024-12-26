@@ -7,7 +7,7 @@ public class Habitacion {
     private double precio;
     private boolean disponible;
 
-    public Habitacion(String nombreDelAlojamiento ,String tipo, String contenido, double precio, boolean disponible) {
+    public Habitacion(String nombreDelAlojamiento, String tipo, String contenido, double precio, boolean disponible) {
         this.nombreDelAlojamiento = nombreDelAlojamiento;
         this.tipo = tipo;
         this.contenido = contenido;
@@ -17,15 +17,13 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "{" +
-                "contenido='" + contenido + '\'' +
-                ", nombreDelAlojamiento='" + nombreDelAlojamiento + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", precio=" + precio +
-                ", disponible=" + disponible +
-                '}';
+        return "Tipo: '" + tipo + '\'' +
+                ", Contenido: '" + contenido + '\'' +
+                ", Precio: " + precio +
+                ", Disponible: " + (disponible ? "Sí" : "No");
     }
 
+    // Getters y Setters
     public String getNombreDelAlojamiento() {
         return nombreDelAlojamiento;
     }

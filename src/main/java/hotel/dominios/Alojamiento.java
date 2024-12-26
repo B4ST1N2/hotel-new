@@ -1,5 +1,7 @@
 package hotel.dominios;
 
+import hotel.utilidades.CalculadorPrecios;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,8 +12,7 @@ public abstract class Alojamiento {
     private String ciudad;
     private List<Habitacion> habitaciones;
 
-
-    public Alojamiento(String tipo,String nombre,int calificacion,String ciudad, List<Habitacion> habitaciones) {
+    public Alojamiento(String tipo, String nombre, int calificacion, String ciudad, List<Habitacion> habitaciones) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.calificacion = calificacion;
@@ -19,33 +20,37 @@ public abstract class Alojamiento {
         this.habitaciones = habitaciones;
     }
 
+    // Método para calcular el porcentaje basado en la temporada
     public double tarifaPorTemporada(LocalDate diaInicio, LocalDate diaFin) {
-        double porcentaje = 0.0;
+        return CalculadorPrecios.calcularPorcentaje(diaInicio, diaFin);
+    }
 
-        int ultimoDiaMes = diaInicio.lengthOfMonth();
-        int inicio = diaInicio.getDayOfMonth();
-        int fin = diaFin.getDayOfMonth();
+    // Método para calcular el precio total
+    public double calcularPrecioTotal(LocalDate diaInicio, LocalDate diaFin, int cantidadHabitaciones) {
+        int dias = calcularDias(diaInicio, diaFin);
+        double precioBase = getPrecioPorNoche() * cantidadHabitaciones * dias;
+        double porcentaje = tarifaPorTemporada(diaInicio, diaFin);
+        double precioFinal = CalculadorPrecios.aplicarPorcentaje(precioBase, porcentaje);
+        return precioFinal;
+    }
 
-        if((inicio > (ultimoDiaMes-5) & (fin < ultimoDiaMes))){
-            porcentaje = 15.0;
-        }else if((10<=inicio)&(fin<=15)){
-            porcentaje = 10.0;
-        }else if((inicio>=5)&(fin<=10)){
-            porcentaje = -8.0;
-        }
-        return porcentaje;
-    };
+    private int calcularDias(LocalDate inicio, LocalDate fin) {
+        return (int) (fin.toEpochDay() - inicio.toEpochDay());
+    }
+
+    public abstract double getPrecioPorNoche();
 
     @Override
     public String toString() {
         return
-                "tipo='" + tipo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", calificacion=" + calificacion + '\'' +
-                ", ciudad='" + ciudad + '\'' +
-                ", habitaciones=" + habitaciones ;
+                "Tipo: '" + tipo + '\'' +
+                        ", Nombre: '" + nombre + '\'' +
+                        ", Calificación: " + calificacion +
+                        ", Ciudad: '" + ciudad + '\'' +
+                        ", \n\t Habitaciones: " + habitaciones;
     }
 
+    // Getters y Setters
     public int getCalificacion() {
         return calificacion;
     }

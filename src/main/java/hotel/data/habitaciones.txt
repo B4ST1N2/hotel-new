@@ -1,11 +1,11 @@
-Hotel Lux,Suite,Cama King Size,300.0,true
-Hotel Lux,Suite Junior,Cama Queen Size y sofá cama,250.0,true
-Hotel Lux,Deluxe,Cama matrimonial,200.0,false
+Hotel Lux,Suite,Cama King Size,300.0,false
+Hotel Lux,Suite,Cama Queen Size y sofá cama,250.0,false
+Hotel Lux,Deluxe,Cama matrimonial,200.0,true
 Finca Verde,Económica,Cama individual y hamaca,100.0,true
-Finca Verde,Suite,Cama Queen Size,220.0,false
+Finca Verde,Suite,Cama Queen Size,220.0,true
 Finca Verde,Rústica,Literas,80.0,true
 Apto Central,Familiar,Cama matrimonial y sofá cama,180.0,true
-Apto Central,Deluxe,Cama matrimonial y balcón,200.0,false
+Apto Central,Deluxe,Cama matrimonial y balcón,200.0,true
 Apto Central,Económica,Cama individual y mesa pequeña,100.0,true
 Club Sol,Piscina privada,Toallas y sillas de playa,200.0,true
 Club Sol,Área común,Camas múltiples,80.0,true
