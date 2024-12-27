@@ -1,6 +1,7 @@
 package hotel.dominios;
 
-import java.util.List;
+import hotel.utilidades.CalculadorPrecioTotal;
+import java.time.LocalDate;
 
 public class DiaDeSol extends Alojamiento {
 
@@ -8,11 +9,16 @@ public class DiaDeSol extends Alojamiento {
     private boolean refrigerio;
     private double precio;
 
-    public DiaDeSol(String tipo, String nombre, int calificacion, String ciudad, List<Habitacion> habitaciones, String actividades, boolean refrigerio, double precio) {
-        super(tipo, nombre, calificacion, ciudad, habitaciones);
+    public DiaDeSol(String tipo, String nombre, int calificacion, String ciudad, String actividades, boolean refrigerio, double precio) {
+        super(tipo, nombre, calificacion, ciudad);
         this.actividades = actividades;
         this.refrigerio = refrigerio;
         this.precio = precio;
+    }
+
+    @Override
+    public double calcularPrecioTotal(LocalDate diaInicio, LocalDate diaFin) {
+        return CalculadorPrecioTotal.calcularPrecioTotal(diaInicio, diaFin, this.getPrecio());
     }
 
     @Override
@@ -21,11 +27,6 @@ public class DiaDeSol extends Alojamiento {
                 ", Actividades: '" + actividades + '\'' +
                 ", Incluye refrigerio: " + (refrigerio ? "Sí" : "No") +
                 ", Precio por actividad: " + precio;
-    }
-
-    @Override
-    public double getPrecioPorNoche() {
-        return this.precio;
     }
 
     public String getActividades() {

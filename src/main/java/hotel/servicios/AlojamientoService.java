@@ -1,7 +1,6 @@
 package hotel.servicios;
 
 import hotel.dominios.*;
-import hotel.utilidades.CalculadorPrecios;
 
 import java.io.File;
 import java.io.FileWriter;

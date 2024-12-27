@@ -1,6 +1,6 @@
 Hotel Lux,Suite,Cama King Size,300.0,true
 Hotel Lux,Suite,Cama Queen Size y sofá cama,250.0,true
-Hotel Lux,Deluxe,Cama matrimonial,200.0,true
+Hotel Lux,Deluxe,Cama matrimonial,200.0,false
 Hotel Carmen,Suite, Cama matrimonial - TV - Jacuzzi,250.0,true
 Hotel Carmen,Deluxe, Cama matrimonial - TV - Jacuzzi,280.0,true
 Finca Verde,Económica,Cama individual y hamaca,100.0,true

@@ -1,13 +1,14 @@
 package hotel.dominios;
 
-import java.util.List;
+import hotel.utilidades.CalculadorPrecioTotal;
+import java.time.LocalDate;
 
 public class Finca extends Alojamiento {
 
     private double precioNoche;
 
-    public Finca(String tipo, String nombre, int calificacion, String ciudad, List<Habitacion> habitaciones, double precioNoche) {
-        super(tipo, nombre, calificacion, ciudad, habitaciones);
+    public Finca(String tipo, String nombre, int calificacion, String ciudad, double precioNoche) {
+        super(tipo, nombre, calificacion, ciudad);
         this.precioNoche = precioNoche;
     }
 
@@ -17,8 +18,8 @@ public class Finca extends Alojamiento {
     }
 
     @Override
-    public double getPrecioPorNoche() {
-        return this.precioNoche;
+    public double calcularPrecioTotal(LocalDate diaInicio, LocalDate diaFin) {
+        return CalculadorPrecioTotal.calcularPrecioTotal(diaInicio, diaFin, this.getPrecioNoche());
     }
 
     public double getPrecioNoche() {

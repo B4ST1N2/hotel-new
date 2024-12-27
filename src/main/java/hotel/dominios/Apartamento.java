@@ -1,24 +1,27 @@
 package hotel.dominios;
 
-import java.util.List;
+import hotel.utilidades.CalculadorPrecioTotal;
+import hotel.utilidades.CalculadorTarifaTemporada;
+
+import java.time.LocalDate;
 
 public class Apartamento extends Alojamiento {
 
     private double precioNoche;
 
-    public Apartamento(String tipo, String nombre, int calificacion, String ciudad, List<Habitacion> habitaciones, double precioNoche) {
-        super(tipo, nombre, calificacion, ciudad, habitaciones);
+    public Apartamento(String tipo, String nombre, int calificacion, String ciudad, double precioNoche) {
+        super(tipo, nombre, calificacion, ciudad);
         this.precioNoche = precioNoche;
+    }
+
+    @Override
+    public double calcularPrecioTotal(LocalDate diaInicio, LocalDate diaFin) {
+        return CalculadorPrecioTotal.calcularPrecioTotal(diaInicio, diaFin, this.getPrecioNoche());
     }
 
     @Override
     public String toString() {
         return super.toString() + ", Precio por noche: " + precioNoche;
-    }
-
-    @Override
-    public double getPrecioPorNoche() {
-        return this.precioNoche;
     }
 
     public double getPrecioNoche() {

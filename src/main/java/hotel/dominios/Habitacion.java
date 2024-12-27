@@ -5,9 +5,9 @@ public class Habitacion {
     private String tipo;
     private String contenido;
     private double precio;
-    private boolean disponible;
+    private Boolean disponible;
 
-    public Habitacion(String nombreDelAlojamiento, String tipo, String contenido, double precio, boolean disponible) {
+    public Habitacion(String nombreDelAlojamiento, String tipo, String contenido, double precio, Boolean disponible) {
         this.nombreDelAlojamiento = nombreDelAlojamiento;
         this.tipo = tipo;
         this.contenido = contenido;

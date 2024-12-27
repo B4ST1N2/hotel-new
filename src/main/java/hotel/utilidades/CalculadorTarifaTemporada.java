@@ -2,7 +2,7 @@ package hotel.utilidades;
 
 import java.time.LocalDate;
 
-public class CalculadorPrecios {
+public class CalculadorTarifaTemporada {
     public static double calcularPorcentaje(LocalDate diaInicio, LocalDate diaFin) {
         double porcentaje = 0.0;
 
@@ -31,4 +31,8 @@ public class CalculadorPrecios {
     public static double aplicarPorcentaje(double precioBase, double porcentaje) {
         return precioBase + (precioBase * (porcentaje / 100));
     }
+
+
+
+
 }
