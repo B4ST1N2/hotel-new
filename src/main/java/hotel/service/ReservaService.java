@@ -1,8 +1,10 @@
-package hotel.servicios;
+package hotel.service;
 
-import hotel.dominios.Alojamiento;
-import hotel.dominios.Habitacion;
-import hotel.dominios.Reserva;
+import hotel.model.entity.Alojamiento;
+import hotel.model.entity.Habitacion;
+import hotel.model.entity.Hotel;
+import hotel.model.entity.Reserva;
+import hotel.service.alojamiento.AlojamientoService;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,13 +13,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservaService {
+public class ReservaService implements IGestionService<Reserva> {
     private final String NOMBRE_ARCHIVO_RESERVAS = "src/main/java/hotel/data/reservas.txt";
 
     public ReservaService() {
         crearArchivo();
     }
 
+    @Override
     public void crearArchivo() {
         var archivo = new File(NOMBRE_ARCHIVO_RESERVAS);
         try {
@@ -34,14 +37,31 @@ public class ReservaService {
         }
     }
 
+    @Override
+    public List<Reserva> obtenerDatos() {
+        // Este método podría llamar a obtenerReservas(AlojamientoService) si se pasa AlojamientoService como parámetro
+        // Por simplicidad, se mantiene vacío y se utiliza el método obtenerReservas(AlojamientoService)
+        return new ArrayList<>();
+    }
+
     public void guardarReserva(Reserva reserva) {
         try (var salida = new PrintWriter(new FileWriter(NOMBRE_ARCHIVO_RESERVAS, true))) {
             salida.println(reserva.toString());
             System.out.println("Reserva guardada: " + reserva);
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Error al guardar la reserva: " + e.getMessage());
         }
+    }
+
+    public Reserva buscarReservaPorEmailYApellido(String email, String apellido, AlojamientoService alojamientoService) {
+        List<Reserva> reservas = obtenerReservas(alojamientoService);
+        for (Reserva reserva : reservas) {
+            if (reserva.getEmail().equalsIgnoreCase(email) &&
+                    reserva.getApellido().equalsIgnoreCase(apellido)) {
+                return reserva;
+            }
+        }
+        return null;
     }
 
     public List<Reserva> obtenerReservas(AlojamientoService alojamientoService) {
@@ -72,15 +92,18 @@ public class ReservaService {
                     continue;
                 }
 
-                // Obtener el objeto Habitacion
-                Habitacion habitacion = alojamiento.getHabitaciones().stream()
-                        .filter(h -> h.getTipo().equalsIgnoreCase(tipoHabitacion))
-                        .findFirst()
-                        .orElse(null);
-
-                if (habitacion == null) {
-                    System.out.println("Habitación no encontrada para la reserva: " + tipoHabitacion);
-                    continue;
+                // Obtener el objeto Habitacion (solo si es un hotel)
+                Habitacion habitacion = null;
+                if (alojamiento instanceof Hotel) {
+                    Hotel hotel = (Hotel) alojamiento;
+                    habitacion = hotel.getHabitaciones().stream()
+                            .filter(h -> h.getTipo().equalsIgnoreCase(tipoHabitacion))
+                            .findFirst()
+                            .orElse(null);
+                    if (habitacion == null) {
+                        System.out.println("Habitación no encontrada para la reserva: " + tipoHabitacion);
+                        continue;
+                    }
                 }
 
                 Reserva reserva = new Reserva(alojamiento, habitacion, diaInicio, diaFin,
@@ -88,21 +111,9 @@ public class ReservaService {
                 listaReservas.add(reserva);
             }
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Error al leer las reservas: " + e.getMessage());
         }
         return listaReservas;
-    }
-
-    public Reserva buscarReservaPorEmailYApellido(String email, String apellido, AlojamientoService alojamientoService) {
-        List<Reserva> reservas = obtenerReservas(alojamientoService);
-        for (Reserva reserva : reservas) {
-            if (reserva.getEmail().equalsIgnoreCase(email) &&
-                    reserva.getApellido().equalsIgnoreCase(apellido)) {
-                return reserva;
-            }
-        }
-        return null;
     }
 
     public void actualizarReserva(Reserva reservaActualizada, AlojamientoService alojamientoService) {
@@ -124,7 +135,6 @@ public class ReservaService {
             }
             System.out.println("Reserva actualizada correctamente.");
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Error al actualizar la reserva: " + e.getMessage());
         }
     }
@@ -145,7 +155,6 @@ public class ReservaService {
             }
             System.out.println("Reserva eliminada correctamente.");
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Error al eliminar la reserva: " + e.getMessage());
         }
     }

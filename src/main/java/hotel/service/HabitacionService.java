@@ -1,6 +1,6 @@
-package hotel.servicios;
+package hotel.service;
 
-import hotel.dominios.Habitacion;
+import hotel.model.entity.Habitacion;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -80,7 +80,7 @@ public class HabitacionService implements IGestionService<Habitacion> {
                 nuevasLineas.add(String.join(",", nombre, tipo, contenido, precio, disp));
             }
 
-
+            // Escribir las nuevas líneas en el archivo
             PrintWriter salida = new PrintWriter(new FileWriter(NOMBRE_ARCHIVO_HABITACIONES, false));
             for (String nuevaLinea : nuevasLineas) {
                 salida.println(nuevaLinea);

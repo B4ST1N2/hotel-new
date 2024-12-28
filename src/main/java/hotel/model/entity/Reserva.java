@@ -1,10 +1,10 @@
-package hotel.dominios;
+package hotel.model.entity;
 
 import java.time.LocalDate;
 
 public class Reserva {
     private Alojamiento alojamiento;
-    private Habitacion habitacion;
+    private Habitacion habitacion; // Puede ser null si no es un hotel
     private LocalDate diaInicio;
     private LocalDate diaFin;
     private int cantidadAdultos;
@@ -36,7 +36,7 @@ public class Reserva {
     @Override
     public String toString() {
         return alojamiento.getNombre() + "," +
-                habitacion.getTipo() + "," +
+                (habitacion != null ? habitacion.getTipo() : "N/A") + "," +
                 diaInicio + "," +
                 diaFin + "," +
                 cantidadAdultos + "," +
@@ -49,7 +49,6 @@ public class Reserva {
                 horaLlegada;
     }
 
-    // Getters y Setters
     public Alojamiento getAlojamiento() {
         return alojamiento;
     }
@@ -58,28 +57,12 @@ public class Reserva {
         this.alojamiento = alojamiento;
     }
 
-    public Habitacion getHabitacion() {
-        return habitacion;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
-    }
-
-    public LocalDate getDiaInicio() {
-        return diaInicio;
-    }
-
-    public void setDiaInicio(LocalDate diaInicio) {
-        this.diaInicio = diaInicio;
-    }
-
-    public LocalDate getDiaFin() {
-        return diaFin;
-    }
-
-    public void setDiaFin(LocalDate diaFin) {
-        this.diaFin = diaFin;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public int getCantidadAdultos() {
@@ -98,20 +81,20 @@ public class Reserva {
         this.cantidadNinos = cantidadNinos;
     }
 
-    public String getNombre() {
-        return nombre;
+    public LocalDate getDiaFin() {
+        return diaFin;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDiaFin(LocalDate diaFin) {
+        this.diaFin = diaFin;
     }
 
-    public String getApellido() {
-        return apellido;
+    public LocalDate getDiaInicio() {
+        return diaInicio;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setDiaInicio(LocalDate diaInicio) {
+        this.diaInicio = diaInicio;
     }
 
     public String getEmail() {
@@ -122,20 +105,12 @@ public class Reserva {
         this.email = email;
     }
 
-    public String getNacionalidad() {
-        return nacionalidad;
+    public Habitacion getHabitacion() {
+        return habitacion;
     }
 
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
     public String getHoraLlegada() {
@@ -144,5 +119,29 @@ public class Reserva {
 
     public void setHoraLlegada(String horaLlegada) {
         this.horaLlegada = horaLlegada;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

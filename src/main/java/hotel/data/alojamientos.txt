@@ -1,5 +1,5 @@
-Hotel,Hotel Lux,5,Medellin,200.0
-Hotel,Hotel Carmen,3,Medellin,150.0
-Finca,Finca Verde,4,Bogota,150.0
-Apartamento,Apto Central,3,Cali,100.0
-DiaDeSol,Club Sol,4,Medellin,Canopic-Picnic-Escondidas,true,57
+Apartamento,Apto Central,4,Barcelona,4,Disponible,180.0
+Hotel,Hotel Lux,5,Madrid
+Finca,Finca Verde,3,Valencia,6,Disponible,220.0
+DiaDeSol,Club Sol,4,Sevilla,Actividades Diversas,true,120.0,10,Disponible
+

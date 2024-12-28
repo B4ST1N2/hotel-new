@@ -1,4 +1,4 @@
-package hotel.dominios;
+package hotel.model.entity;
 
 public class Habitacion {
     private String nombreDelAlojamiento;
@@ -23,29 +23,28 @@ public class Habitacion {
                 ", Disponible: " + (disponible ? "Sí" : "No");
     }
 
-    // Getters y Setters
-    public String getNombreDelAlojamiento() {
-        return nombreDelAlojamiento;
-    }
-
-    public void setNombreDelAlojamiento(String nombreDelAlojamiento) {
-        this.nombreDelAlojamiento = nombreDelAlojamiento;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getContenido() {
         return contenido;
     }
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
+    }
+
+    public Boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public String getNombreDelAlojamiento() {
+        return nombreDelAlojamiento;
+    }
+
+    public void setNombreDelAlojamiento(String nombreDelAlojamiento) {
+        this.nombreDelAlojamiento = nombreDelAlojamiento;
     }
 
     public double getPrecio() {
@@ -56,11 +55,11 @@ public class Habitacion {
         this.precio = precio;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

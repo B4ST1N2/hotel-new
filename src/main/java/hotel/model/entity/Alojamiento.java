@@ -1,6 +1,5 @@
-package hotel.dominios;
+package hotel.model.entity;
 
-import hotel.utilidades.CalculadorPrecioTotal;
 import hotel.utilidades.CalculadorTarifaTemporada;
 
 import java.time.LocalDate;
@@ -18,6 +17,8 @@ public abstract class Alojamiento {
         this.ciudad = ciudad;
     }
 
+    public abstract double getPrecioPorNoche();
+
     public abstract double calcularPrecioTotal(LocalDate diaInicio, LocalDate diaFin);
 
     public double tarifaPorTemporada(LocalDate diaInicio, LocalDate diaFin) {
@@ -26,14 +27,12 @@ public abstract class Alojamiento {
 
     @Override
     public String toString() {
-        return
-                "Tipo: '" + tipo + '\'' +
-                        ", Nombre: '" + nombre + '\'' +
-                        ", Calificación: " + calificacion +
-                        ", Ciudad: '" + ciudad + '\'';
+        return "Tipo: '" + tipo + '\'' +
+                ", Nombre: '" + nombre + '\'' +
+                ", Calificación: " + calificacion +
+                ", Ciudad: '" + ciudad + '\'';
     }
 
-    // Getters y Setters
     public int getCalificacion() {
         return calificacion;
     }
