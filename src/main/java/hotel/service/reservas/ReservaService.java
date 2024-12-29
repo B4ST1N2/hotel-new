@@ -1,9 +1,10 @@
-package hotel.service;
+package hotel.service.reservas;
 
 import hotel.model.entity.Alojamiento;
 import hotel.model.entity.Habitacion;
 import hotel.model.entity.Hotel;
 import hotel.model.entity.Reserva;
+import hotel.service.IGestionService;
 import hotel.service.alojamiento.AlojamientoService;
 
 import java.io.*;
@@ -15,8 +16,10 @@ import java.util.List;
 
 public class ReservaService implements IGestionService<Reserva> {
     private final String NOMBRE_ARCHIVO_RESERVAS = "src/main/java/hotel/data/reservas.txt";
+    private AlojamientoReservado alojamientoReservado;
 
     public ReservaService() {
+        this.alojamientoReservado = new AlojamientoReservado();
         crearArchivo();
     }
 
@@ -61,6 +64,7 @@ public class ReservaService implements IGestionService<Reserva> {
                 return reserva;
             }
         }
+
         return null;
     }
 
@@ -70,7 +74,6 @@ public class ReservaService implements IGestionService<Reserva> {
             List<String> lineas = Files.readAllLines(Paths.get(NOMBRE_ARCHIVO_RESERVAS));
             for (String linea : lineas) {
                 String[] datos = linea.split(",");
-                if (datos.length < 12) continue; // Verificar que la línea tenga todos los campos
 
                 String nombreAlojamiento = datos[0];
                 String tipoHabitacion = datos[1];
@@ -85,10 +88,10 @@ public class ReservaService implements IGestionService<Reserva> {
                 String telefono = datos[10];
                 String horaLlegada = datos[11];
 
+
                 // Obtener el objeto Alojamiento
                 Alojamiento alojamiento = alojamientoService.buscarPorNombre(nombreAlojamiento);
-                if (alojamiento == null) {
-                    System.out.println("Alojamiento no encontrado para la reserva: " + nombreAlojamiento);
+                if (!alojamientoReservado.datosReserva(alojamiento,datos)){
                     continue;
                 }
 
@@ -100,10 +103,10 @@ public class ReservaService implements IGestionService<Reserva> {
                             .filter(h -> h.getTipo().equalsIgnoreCase(tipoHabitacion))
                             .findFirst()
                             .orElse(null);
-                    if (habitacion == null) {
-                        System.out.println("Habitación no encontrada para la reserva: " + tipoHabitacion);
-                        continue;
-                    }
+//                    if (habitacion == null) {
+//                        System.out.println("Habitación no encontrada para la reserva: " + tipoHabitacion);
+//                        continue;
+//                    }
                 }
 
                 Reserva reserva = new Reserva(alojamiento, habitacion, diaInicio, diaFin,

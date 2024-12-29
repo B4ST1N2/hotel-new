@@ -7,8 +7,8 @@ import hotel.model.entity.Habitacion;
 import hotel.model.entity.Hotel; // Importación añadida
 import hotel.model.entity.Reserva;
 import hotel.service.alojamiento.AlojamientoService;
-import hotel.service.HabitacionService;
-import hotel.service.ReservaService;
+import hotel.service.habitacion.HabitacionService;
+import hotel.service.reservas.ReservaService;
 import hotel.utilidades.CalculadorTarifaTemporada; // Asegúrate de importar las utilidades si es necesario
 
 import java.time.LocalDate;
@@ -254,6 +254,7 @@ public class Main {
 
             System.out.print("Ingrese su apellido para autenticación: ");
             String apellido = scanner.nextLine();
+
 
             Reserva reserva = reservaController.buscarReservaPorEmailYApellido(email, apellido);
 

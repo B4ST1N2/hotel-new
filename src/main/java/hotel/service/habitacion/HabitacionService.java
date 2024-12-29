@@ -1,6 +1,7 @@
-package hotel.service;
+package hotel.service.habitacion;
 
 import hotel.model.entity.Habitacion;
+import hotel.service.IGestionService;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -54,7 +55,7 @@ public class HabitacionService implements IGestionService<Habitacion> {
         return listaHabitaciones;
     }
 
-    // Método para actualizar la disponibilidad de una habitación
+
     public void actualizarDisponibilidad(String nombreAlojamiento, String tipoHabitacion, boolean disponible) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get(NOMBRE_ARCHIVO_HABITACIONES));
@@ -62,10 +63,6 @@ public class HabitacionService implements IGestionService<Habitacion> {
 
             for (String linea : lineas) {
                 String[] datos = linea.split(",");
-                if (datos.length < 5) {
-                    nuevasLineas.add(linea);
-                    continue;
-                }
 
                 String nombre = datos[0];
                 String tipo = datos[1];

@@ -2,7 +2,7 @@ package hotel.controller;
 
 import hotel.model.entity.Reserva;
 import hotel.service.alojamiento.AlojamientoService;
-import hotel.service.ReservaService;
+import hotel.service.reservas.ReservaService;
 
 public class ReservaController {
     private ReservaService reservaService;

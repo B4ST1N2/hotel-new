@@ -1,9 +1,9 @@
 package hotel.service.alojamiento;
 
 import hotel.model.entity.*;
-import hotel.service.HabitacionService;
+import hotel.service.habitacion.HabitacionService;
 import hotel.service.IGestionService;
-import hotel.service.ReservaService;
+import hotel.service.reservas.ReservaService;
 import hotel.utilidades.CalculadorTarifaTemporada;
 
 import java.io.File;
@@ -66,8 +66,6 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
 
 
                 Alojamiento alojamiento = cargarAlojamientos.cargarAlojamiento(datos);
-                /* aqui el switch*/
-
 
                 if (alojamiento != null) {
                     if (alojamiento instanceof Hotel) {
@@ -84,7 +82,7 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
             }
 
         } catch (Exception e) {
-            System.out.println("Error al cargar datos: " + e.getMessage());
+            System.out.println("Error al cargar datos aqui: " + e.getMessage());
         }
     }
 
@@ -141,9 +139,8 @@ public class AlojamientoService implements IGestionService<Alojamiento> {
         Reserva nuevaReserva = new Reserva(alojamiento, habitacion, diaInicio, diaFin, cantidadAdultos, cantidadNinos,
                 nombre, apellido, email, nacionalidad, telefono, horaLlegada);
         reservaService.guardarReserva(nuevaReserva);
-        System.out.println("entro al metodo para poner false 1");
+
         if (habitacion != null) { // Solo los hoteles tienen habitaciones
-            System.out.println("entro al metodo para poner false 2");
             habitacion.setDisponible(false);
             habitacionService.actualizarDisponibilidad(alojamiento.getNombre(), habitacion.getTipo(), false);
         }
