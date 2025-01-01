@@ -1,23 +1,23 @@
 package hotel.model.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Hotel extends Accommodation {
-    private List<Room> habitaciones;
+public class Farm extends Accommodation {
+    private int cantidadAnimales;
+    private String estado;
 
-    public Hotel(String tipo, String nombre, int estrellas, String ubicacion, double precioPorNoche) {
+    public Farm(String tipo, String nombre, int estrellas, String ubicacion, int cantidadAnimales, String estado, double precioPorNoche) {
         super(tipo, nombre, estrellas, ubicacion, precioPorNoche);
-        this.habitaciones = new ArrayList<>();
+        this.cantidadAnimales = cantidadAnimales;
+        this.estado = estado;
     }
 
-    public List<Room> getHabitaciones() {
-        return habitaciones;
+    public int getCantidadAnimales() {
+        return cantidadAnimales;
     }
 
-    public void addHabitacion(Room habitacion) {
-        habitaciones.add(habitacion);
+    public String getEstado() {
+        return estado;
     }
 
     @Override
