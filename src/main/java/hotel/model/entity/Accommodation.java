@@ -1,32 +1,27 @@
+// File: hotel/model/entity/Accommodation.java
 package hotel.model.entity;
 
-import java.time.LocalDate;
-
 public abstract class Accommodation {
-    private String tipo;
     private String nombre;
-    private int estrellas;
+    private int calificacion; // Del 1 al 5
     private String ubicacion;
     private double precioPorNoche;
+    private String tipo;
 
-    public Accommodation(String tipo, String nombre, int estrellas, String ubicacion, double precioPorNoche) {
+    public Accommodation(String tipo, String nombre, int calificacion, String ubicacion, double precioPorNoche) {
         this.tipo = tipo;
         this.nombre = nombre;
-        this.estrellas = estrellas;
+        this.calificacion = calificacion;
         this.ubicacion = ubicacion;
         this.precioPorNoche = precioPorNoche;
-    }
-
-    public String getTipo() {
-        return tipo;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getEstrellas() {
-        return estrellas;
+    public int getCalificacion() {
+        return calificacion;
     }
 
     public String getUbicacion() {
@@ -37,7 +32,32 @@ public abstract class Accommodation {
         return precioPorNoche;
     }
 
-    public abstract double calcularPrecioTotal(LocalDate fechaInicio, LocalDate fechaFin);
+    public String getTipo() {
+        return tipo;
+    }
 
-    public abstract double tarifaPorTemporada(LocalDate fechaInicio, LocalDate fechaFin);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public void setPrecioPorNoche(double precioPorNoche) {
+        this.precioPorNoche = precioPorNoche;
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre +
+                "\nTipo: " + tipo +
+                "\nCalificación: " + calificacion +
+                "\nUbicación: " + ubicacion +
+                "\nPrecio por noche: $" + precioPorNoche;
+    }
 }

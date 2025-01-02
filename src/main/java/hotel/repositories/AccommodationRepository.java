@@ -1,7 +1,11 @@
+// File: hotel/repositories/AccommodationRepository.java
 package hotel.repositories;
 
-import hotel.model.entity.*;
 import hotel.model.entity.Accommodation;
+import hotel.model.entity.Apartment;
+import hotel.model.entity.DiaDeSol;
+import hotel.model.entity.Farm;
+import hotel.model.entity.Hotel;
 import hotel.model.entity.Room;
 
 import java.util.ArrayList;
@@ -14,12 +18,7 @@ public class AccommodationRepository {
 
     private AccommodationRepository() {
         accommodations = new ArrayList<>();
-        Hotel hotel = new Hotel("Hotel", "Hotel Lux", 5, "Medellin", 200.0);
-        hotel.addHabitacion(new Room("Suite", "Suite Deluxe", true));
-        hotel.addHabitacion(new Room("Standard", "Standard Room", true));
-        accommodations.add(hotel);
-        accommodations.add(new Apartment("Apartment", "Apart Central", 5, "Bogota", 180.0));
-        accommodations.add(new Farm("Farm", "Finca Verde", 3, "Valencia", 6, "Disponible", 220.0));
+        inicializarDatos();
     }
 
     public static synchronized AccommodationRepository getInstance() {
@@ -27,6 +26,31 @@ public class AccommodationRepository {
             instance = new AccommodationRepository();
         }
         return instance;
+    }
+
+    private void inicializarDatos() {
+        // Agregar hoteles de ejemplo
+        Hotel hotel1 = new Hotel("Hotel Lux", 5, "Medellín");
+        hotel1.addHabitacion(new Room("Suite", "Suite Deluxe con vista al mar, aire acondicionado, cafetera, TV de pantalla plana, ducha y escritorio.", true, 250.0));
+        hotel1.addHabitacion(new Room("Standard", "Habitación estándar con 2 camas dobles, aire acondicionado, cafetera, TV, baño privado.", true, 150.0));
+        hotel1.addHabitacion(new Room("Deluxe", "Habitación deluxe con 1 cama king size, vista panorámica, aire acondicionado, minibar, TV de pantalla plana.", true, 200.0));
+        hotel1.addHabitacion(new Room("Junior Suite", "Junior Suite con sala de estar, 2 camas individuales, aire acondicionado, cafetera, TV y escritorio.", true, 180.0));
+        hotel1.addHabitacion(new Room("Presidential Suite", "Presidential Suite con múltiples habitaciones, jacuzzi, aire acondicionado, cafeteras, TV de pantalla grande.", true, 300.0));
+        accommodations.add(hotel1);
+
+        // Agregar apartamentos de ejemplo
+        Apartment apartment1 = new Apartment("Apart Central", 4, "Bogotá", 150.0);
+        accommodations.add(apartment1);
+
+        // Agregar fincas de ejemplo
+        String[] actividadesFinca = {"Paseo a caballo", "Pesca deportiva", "Excursión en bicicleta"};
+        Farm finca1 = new Farm("Finca Verde", 3, "Valencia", actividadesFinca, true, 180.0);
+        accommodations.add(finca1);
+
+        // Agregar Día de Sol de ejemplo
+        String[] actividadesDiaDeSol = {"Natación", "Tiro con arco", "Yoga al aire libre"};
+        DiaDeSol diaDeSol1 = new DiaDeSol("Sol y Mar", 4, "Cartagena", actividadesDiaDeSol, true, 120.0);
+        accommodations.add(diaDeSol1);
     }
 
     public List<Accommodation> getAllAccommodations() {
@@ -42,7 +66,7 @@ public class AccommodationRepository {
         return null;
     }
 
-        public boolean agregarAlojamiento(Accommodation alojamiento) {
+    public boolean agregarAlojamiento(Accommodation alojamiento) {
         if (buscarPorNombre(alojamiento.getNombre()) != null) {
             return false;
         }

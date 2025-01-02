@@ -1,15 +1,15 @@
-// File: hotel/model/entity/Farm.java
+// File: hotel/model/entity/DiaDeSol.java
 package hotel.model.entity;
 
-public class Farm extends Accommodation {
-    private String[] actividades; // Lista de actividades disponibles
-    private boolean incluyeAlmuerzo;
+public class DiaDeSol extends Accommodation {
+    private String[] actividades;
+    private boolean incluyeRefrigerio;
     private double precioActividad;
 
-    public Farm(String nombre, int calificacion, String ubicacion, String[] actividades, boolean incluyeAlmuerzo, double precioActividad) {
-        super("Finca", nombre, calificacion, ubicacion, 0.0); // Precio inicial 0.0
+    public DiaDeSol(String nombre, int calificacion, String ubicacion, String[] actividades, boolean incluyeRefrigerio, double precioActividad) {
+        super("Día de Sol", nombre, calificacion, ubicacion, 0.0); // Precio inicial 0.0
         this.actividades = actividades;
-        this.incluyeAlmuerzo = incluyeAlmuerzo;
+        this.incluyeRefrigerio = incluyeRefrigerio;
         this.precioActividad = precioActividad;
     }
 
@@ -17,8 +17,8 @@ public class Farm extends Accommodation {
         return actividades;
     }
 
-    public boolean isIncluyeAlmuerzo() {
-        return incluyeAlmuerzo;
+    public boolean isIncluyeRefrigerio() {
+        return incluyeRefrigerio;
     }
 
     public double getPrecioActividad() {
@@ -29,8 +29,8 @@ public class Farm extends Accommodation {
         this.actividades = actividades;
     }
 
-    public void setIncluyeAlmuerzo(boolean incluyeAlmuerzo) {
-        this.incluyeAlmuerzo = incluyeAlmuerzo;
+    public void setIncluyeRefrigerio(boolean incluyeRefrigerio) {
+        this.incluyeRefrigerio = incluyeRefrigerio;
     }
 
     public void setPrecioActividad(double precioActividad) {
@@ -44,7 +44,7 @@ public class Farm extends Accommodation {
         for (String actividad : actividades) {
             sb.append("\n- ").append(actividad);
         }
-        sb.append("\nIncluye Almuerzo: ").append(incluyeAlmuerzo ? "Sí" : "No");
+        sb.append("\nIncluye Refrigerio: ").append(incluyeRefrigerio ? "Sí" : "No");
         sb.append("\nPrecio por Actividad: $").append(precioActividad);
         return sb.toString();
     }

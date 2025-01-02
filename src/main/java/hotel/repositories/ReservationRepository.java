@@ -1,3 +1,4 @@
+// File: hotel/repositories/ReservationRepository.java
 package hotel.repositories;
 
 import hotel.model.entity.Reservation;
@@ -29,9 +30,19 @@ public class ReservationRepository {
         reservas.add(reserva);
     }
 
-    public Reservation buscarReservaPorEmailYApellido(String email, String apellido) {
+    public Reservation buscarReservaPorEmail(String email) {
         for (Reservation reserva : reservas) {
-            if (reserva.getEmail().equalsIgnoreCase(email) && reserva.getApellido().equalsIgnoreCase(apellido)) {
+            if (reserva.getEmail().equalsIgnoreCase(email)) {
+                return reserva;
+            }
+        }
+        return null;
+    }
+
+    // Nuevo método agregado
+    public Reservation buscarReservaPorEmailYFechaNacimiento(String email, String fechaNacimiento) {
+        for (Reservation reserva : reservas) {
+            if (reserva.getEmail().equalsIgnoreCase(email) && reserva.getFechaNacimiento().equals(fechaNacimiento)) {
                 return reserva;
             }
         }
@@ -39,6 +50,7 @@ public class ReservationRepository {
     }
 
     public void actualizarReserva(Reservation reserva) {
+        // Las reservas son objetos mutables y ya están actualizadas en la lista.
     }
 
     public boolean eliminarReserva(Reservation reserva) {
